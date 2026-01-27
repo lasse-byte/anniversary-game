@@ -12,9 +12,9 @@ color = Color(0.95, 0.85, 0.9, 1)
 
 [node name="PictureFrame1" parent="." index="4"]
 offset_left = 170.0
-offset_top = 170.0
+offset_top = 200.0
 offset_right = 290.0
-offset_bottom = 330.0
+offset_bottom = 360.0
 
 [node name="Picture" parent="PictureFrame1" index="0"]
 color = Color(1, 0.9, 0.95, 1)
@@ -24,9 +24,9 @@ text = "🌺"
 
 [node name="PictureFrame2" parent="." index="5"]
 offset_left = 440.0
-offset_top = 230.0
+offset_top = 200.0
 offset_right = 560.0
-offset_bottom = 390.0
+offset_bottom = 360.0
 
 [node name="Picture" parent="PictureFrame2" index="0"]
 color = Color(0.95, 1, 0.95, 1)
@@ -36,9 +36,9 @@ text = "🎊"
 
 [node name="PictureFrame3" parent="." index="6"]
 offset_left = 750.0
-offset_top = 190.0
+offset_top = 200.0
 offset_right = 870.0
-offset_bottom = 350.0
+offset_bottom = 360.0
 
 [node name="Picture" parent="PictureFrame3" index="0"]
 color = Color(0.9, 0.9, 1, 1)

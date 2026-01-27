@@ -75,9 +75,9 @@ text = "❤"
 
 [node name="PictureFrame2" parent="." instance=ExtResource("4_frame")]
 offset_left = 500.0
-offset_top = 250.0
+offset_top = 200.0
 offset_right = 620.0
-offset_bottom = 410.0
+offset_bottom = 360.0
 
 [node name="Picture" parent="PictureFrame2" index="0"]
 color = Color(0.8, 1, 0.8, 1)
