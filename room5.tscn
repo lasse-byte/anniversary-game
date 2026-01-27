@@ -33,9 +33,9 @@ color = Color(1, 1, 0.85, 1)
 text = "🥳"
 
 [node name="PictureFrame3" parent="." index="6"]
-offset_left = 720.0
+offset_left = 570.0
 offset_top = 200.0
-offset_right = 840.0
+offset_right = 690.0
 offset_bottom = 360.0
 
 [node name="Picture" parent="PictureFrame3" index="0"]
@@ -44,7 +44,91 @@ color = Color(0.85, 0.85, 1, 1)
 [node name="Label" parent="PictureFrame3/Picture" index="0"]
 text = "💫"
 
-[node name="Door" parent="." index="7"]
+[node name="PictureFrame4" parent="." index="7"]
+offset_left = 710.0
+offset_top = 200.0
+offset_right = 830.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame4" index="0"]
+color = Color(1, 0.9, 0.95, 1)
+
+[node name="Label" parent="PictureFrame4/Picture" index="0"]
+text = "🌟"
+
+[node name="PictureFrame5" parent="." index="8"]
+offset_left = 850.0
+offset_top = 200.0
+offset_right = 970.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame5" index="0"]
+color = Color(0.95, 1, 0.95, 1)
+
+[node name="Label" parent="PictureFrame5/Picture" index="0"]
+text = "💝"
+
+[node name="PictureFrame6" parent="." index="9"]
+offset_left = 990.0
+offset_top = 200.0
+offset_right = 1110.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame6" index="0"]
+color = Color(1, 0.95, 1, 1)
+
+[node name="Label" parent="PictureFrame6/Picture" index="0"]
+text = "🎊"
+
+[node name="PictureFrame7" parent="." index="10"]
+offset_left = 160.0
+offset_top = 400.0
+offset_right = 280.0
+offset_bottom = 560.0
+
+[node name="Picture" parent="PictureFrame7" index="0"]
+color = Color(1, 1, 0.9, 1)
+
+[node name="Label" parent="PictureFrame7/Picture" index="0"]
+text = "💖"
+
+[node name="PictureFrame8" parent="." index="11"]
+offset_left = 300.0
+offset_top = 400.0
+offset_right = 420.0
+offset_bottom = 560.0
+
+[node name="Picture" parent="PictureFrame8" index="0"]
+color = Color(0.9, 1, 1, 1)
+
+[node name="Label" parent="PictureFrame8/Picture" index="0"]
+text = "🎈"
+
+[node name="PictureFrame9" parent="." index="12"]
+offset_left = 440.0
+offset_top = 400.0
+offset_right = 560.0
+offset_bottom = 560.0
+
+[node name="Picture" parent="PictureFrame9" index="0"]
+color = Color(1, 0.9, 1, 1)
+
+[node name="Label" parent="PictureFrame9/Picture" index="0"]
+text = "🌹"
+
+[node name="PictureFrame10" parent="." index="13"]
+offset_left = 580.0
+offset_top = 400.0
+offset_right = 700.0
+offset_bottom = 560.0
+
+[node name="Picture" parent="PictureFrame10" index="0"]
+color = Color(1, 0.85, 0.9, 1)
+
+[node name="Label" parent="PictureFrame10/Picture" index="0"]
+text = "💕"
+
+[node name="Door" parent="." index="14"]
 visible = false
 
 [node name="YearLabel" parent="UI" index="0"]
@@ -52,9 +136,9 @@ text = "Year 5 - Forever & Always ❤"
 
 [node name="FinalMessage" type="Label" parent="UI" index="1"]
 offset_left = 320.0
-offset_top = 500.0
+offset_top = 600.0
 offset_right = 960.0
-offset_bottom = 600.0
+offset_bottom = 700.0
 text = "Thank you for 5 amazing years!
 Here's to many more adventures together 💕"
 horizontal_alignment = 1
@@ -63,3 +147,10 @@ vertical_alignment = 1
 [editable path="PictureFrame1"]
 [editable path="PictureFrame2"]
 [editable path="PictureFrame3"]
+[editable path="PictureFrame4"]
+[editable path="PictureFrame5"]
+[editable path="PictureFrame6"]
+[editable path="PictureFrame7"]
+[editable path="PictureFrame8"]
+[editable path="PictureFrame9"]
+[editable path="PictureFrame10"]
