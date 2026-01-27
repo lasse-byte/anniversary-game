@@ -208,4 +208,6 @@ amount = 100
 process_material = null
 lifetime = 3.0
 
+[connection signal="body_entered" from="Door" to="." method="_on_door_area_body_entered"]
+
 [editable path="PictureFrame1"]
