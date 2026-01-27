@@ -9,13 +9,17 @@ func _ready():
 	if not up_arrow:
 		push_error("UpArrow node not found!")
 	else:
-		print("UpArrow found at position: ", up_arrow.position, " visible: ", up_arrow.visible)
+		print("Frame: ", name, " - UpArrow found at global pos: ", up_arrow.global_position, " visible: ", up_arrow.visible)
+		print("  offset_left: ", up_arrow.offset_left, " offset_top: ", up_arrow.offset_top)
 	
 	var detection_area = $DetectionArea
 	if not detection_area:
 		push_error("DetectionArea not found!")
 	else:
-		print("DetectionArea found at position: ", detection_area.position)
+		print("Frame: ", name, " - DetectionArea at global pos: ", detection_area.global_position)
+		print("  local position: ", detection_area.position)
+	
+	print("Frame: ", name, " - Frame global position: ", global_position, " size: ", size)
 	
 	# Check if Picture node has a Sprite2D child for custom texture
 	var sprite = picture.get_node_or_null("Sprite2D")
@@ -69,8 +73,10 @@ func scale_frame_to_texture(texture: Texture2D):
 	
 	# Reposition arrow and detection area
 	if up_arrow:
-		up_arrow.position.x = size.x / 2 - 20
-		up_arrow.position.y = size.y + 10
+		up_arrow.offset_left = size.x / 2 - 20
+		up_arrow.offset_right = size.x / 2 + 20
+		up_arrow.offset_top = size.y + 10
+		up_arrow.offset_bottom = size.y + 40
 	
 	var detection_area = $DetectionArea
 	if detection_area:
