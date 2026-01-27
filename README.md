@@ -2,6 +2,19 @@
 
 A cute 2D platformer celebrating 5 years together! Walk through 5 rooms, each representing one year of your relationship.
 
+## 🚀 Quick Start
+
+**New to this project?** See [HOW_TO_CLONE.md](HOW_TO_CLONE.md) for detailed step-by-step instructions on how to clone and use this game!
+
+**TL;DR:**
+```bash
+git clone https://github.com/lasse-byte/anniversary-game.git
+cd anniversary-game
+# Open Godot 4.6, click Import, select project.godot, press F5 to play!
+```
+
+Or download as ZIP from the green "Code" button on GitHub (no Git required).
+
 ## Features
 - Simple 2D platformer controls (A/D or Arrow keys to move, Space to jump)
 - 5 unique rooms, one for each year
@@ -13,7 +26,7 @@ A cute 2D platformer celebrating 5 years together! Walk through 5 rooms, each re
 
 ### For Development (Editing the Game)
 1. Download and install [Godot 4.6](https://godotengine.org/download) (use the standard version, NOT the .NET version)
-2. Clone or download this repository
+2. Clone or download this repository (see [HOW_TO_CLONE.md](HOW_TO_CLONE.md) for details)
 3. Open Godot 4.6
 4. Click "Import" and select the `project.godot` file in this folder
 5. Click "Import & Edit"
