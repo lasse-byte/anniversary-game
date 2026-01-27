@@ -69,13 +69,13 @@ func scale_frame_to_texture(texture: Texture2D):
 
 func _on_detection_area_body_entered(body):
 	if body.name == "Player":
-		up_arrow.visible = true
+		# Arrow removed - no longer shown
 		if body.has_method("add_nearby_frame"):
 			body.add_nearby_frame(self)
 
 func _on_detection_area_body_exited(body):
 	if body.name == "Player":
-		up_arrow.visible = false
+		# Arrow removed - no longer shown
 		if body.has_method("remove_nearby_frame"):
 			body.remove_nearby_frame(self)
 

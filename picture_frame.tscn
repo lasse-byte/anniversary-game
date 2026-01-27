@@ -45,8 +45,9 @@ vertical_alignment = 1
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(60, 488)
-collision_layer = 2
+collision_layer = 0
 collision_mask = 1
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("RectangleShape2D_detect")
