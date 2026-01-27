@@ -34,12 +34,6 @@ func _physics_process(delta):
 	if nearby_frames.size() == 0 and viewing_frame:
 		exit_frame_view()
 	
-	# Handle frame viewing - exit on movement or jump
-	if viewing_frame:
-		# When viewing a frame, exit with any movement or jump
-		if Input.get_axis("move_left", "move_right") != 0 or Input.is_action_just_pressed("ui_accept"):
-			exit_frame_view()
-	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
