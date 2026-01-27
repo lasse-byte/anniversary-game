@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 200.0
+const SPEED = 400.0
 const JUMP_VELOCITY = -400.0
 const DEFAULT_FRAME_SIZE = Vector2(120, 160)  # Default frame size for camera calculations
 

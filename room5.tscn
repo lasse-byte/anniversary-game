@@ -12,6 +12,8 @@ size = Vector2(50, 100)
 
 [node name="Room5" type="Node2D"]
 script = ExtResource("1_script")
+year_number = 5
+room_color = Color(0.95, 0.85, 0.9, 1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 7500.0
