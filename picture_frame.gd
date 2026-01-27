@@ -17,9 +17,14 @@ func scale_frame_to_texture(texture: Texture2D):
 	# Get texture size
 	var tex_size = texture.get_size()
 	
-	# Safety check for division by zero
-	if tex_size.y <= 0 or tex_size.x <= 0:
-		push_warning("Invalid texture size for picture frame")
+	# Safety check for invalid dimensions
+	if tex_size.y == 0 or tex_size.x == 0:
+		push_warning("Texture has zero dimension - cannot scale frame")
+		return
+	
+	# Additional check for negative dimensions (should never happen, but indicates serious issue)
+	if tex_size.y < 0 or tex_size.x < 0:
+		push_error("Texture has negative dimensions - this should not happen!")
 		return
 	
 	# Calculate aspect ratio

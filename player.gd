@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
+const DEFAULT_FRAME_SIZE = Vector2(120, 160)  # Default frame size for camera calculations
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -75,7 +76,7 @@ func enter_frame_view(frame: Node2D):
 	# Calculate frame position in global coordinates
 	var frame_global_pos = frame.global_position
 	# Adjust for frame center (ColorRect has 'size' property)
-	var frame_size = frame.size if "size" in frame else Vector2(120, 160)
+	var frame_size = frame.size if "size" in frame else DEFAULT_FRAME_SIZE
 	frame_global_pos += frame_size / 2
 	
 	# Calculate offset needed (frame position - player position)
