@@ -8,6 +8,16 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
+@onready var collision_shape = $CollisionShape2D
+
+func _ready():
+	# Create a simple colored rectangle as sprite
+	sprite.texture = create_player_texture()
+
+func create_player_texture() -> ImageTexture:
+	var img = Image.create(32, 48, false, Image.FORMAT_RGBA8)
+	img.fill(Color(0.8, 0.4, 0.6, 1))
+	return ImageTexture.create_from_image(img)
 
 func _physics_process(delta):
 	# Add the gravity.
