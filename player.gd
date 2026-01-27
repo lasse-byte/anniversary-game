@@ -74,8 +74,8 @@ func enter_frame_view(frame: Node2D):
 	
 	# Calculate frame position in global coordinates
 	var frame_global_pos = frame.global_position
-	# Adjust for frame center (frames are positioned by top-left)
-	var frame_size = frame.size if frame.has_method("get_size") or "size" in frame else Vector2(120, 160)
+	# Adjust for frame center (ColorRect has 'size' property)
+	var frame_size = frame.size if "size" in frame else Vector2(120, 160)
 	frame_global_pos += frame_size / 2
 	
 	# Calculate offset needed (frame position - player position)

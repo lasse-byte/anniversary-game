@@ -17,6 +17,11 @@ func scale_frame_to_texture(texture: Texture2D):
 	# Get texture size
 	var tex_size = texture.get_size()
 	
+	# Safety check for division by zero
+	if tex_size.y <= 0 or tex_size.x <= 0:
+		push_warning("Invalid texture size for picture frame")
+		return
+	
 	# Calculate aspect ratio
 	var aspect_ratio = tex_size.x / tex_size.y
 	
