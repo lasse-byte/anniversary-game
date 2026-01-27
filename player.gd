@@ -13,7 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var camera = $Camera2D
 
 var viewing_frame = false
-var current_frame: Node2D = null
+var current_frame: Control = null
 var nearby_frames = []
 
 func _ready():
@@ -64,7 +64,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func enter_frame_view(frame: Node2D):
+func enter_frame_view(frame: Control):
 	viewing_frame = true
 	current_frame = frame
 	
@@ -93,11 +93,11 @@ func exit_frame_view():
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(camera, "offset", Vector2.ZERO, 0.5)
 
-func add_nearby_frame(frame: Node2D):
+func add_nearby_frame(frame: Control):
 	if frame not in nearby_frames:
 		nearby_frames.append(frame)
 
-func remove_nearby_frame(frame: Node2D):
+func remove_nearby_frame(frame: Control):
 	nearby_frames.erase(frame)
 
 func has_nearby_frames() -> bool:
