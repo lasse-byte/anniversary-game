@@ -26,16 +26,19 @@ func create_player_texture() -> ImageTexture:
 	return ImageTexture.create_from_image(img)
 
 func _physics_process(delta):
-	# Handle frame viewing
+	# Auto-enter frame view when nearby frames are detected
+	if nearby_frames.size() > 0 and not viewing_frame:
+		enter_frame_view(nearby_frames[0])
+	
+	# Auto-exit frame view when no nearby frames
+	if nearby_frames.size() == 0 and viewing_frame:
+		exit_frame_view()
+	
+	# Handle frame viewing - allow movement to exit
 	if viewing_frame:
-		# When viewing a frame, don't move but allow exit
+		# When viewing a frame, allow exit with any movement or jump
 		if Input.get_axis("move_left", "move_right") != 0 or Input.is_action_just_pressed("ui_accept"):
 			exit_frame_view()
-		return
-	
-	# Check if we can view a frame
-	if nearby_frames.size() > 0 and Input.is_action_just_pressed("ui_up"):
-		enter_frame_view(nearby_frames[0])
 		return
 	
 	# Add the gravity.
