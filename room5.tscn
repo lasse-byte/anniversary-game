@@ -132,7 +132,7 @@ offset_bottom = 360.0
 color = Color(1, 1, 0.9, 1)
 
 [node name="Label" parent="PictureFrame9/Picture" index="0"]
-text = "❤️"
+text = "❤"
 
 [node name="PictureFrame10" parent="." index="13"]
 offset_left = 6600.0
