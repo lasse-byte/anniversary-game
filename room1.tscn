@@ -1,19 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://b16g0oayqq4ry"]
+[gd_scene load_steps=4 format=3 uid="uid://b16g0oayqq4ry"]
 
 [ext_resource type="PackedScene" uid="uid://bpylb00p1dh0k" path="res://room_template.tscn" id="1_iu41x"]
 [ext_resource type="PackedScene" uid="uid://c0gk2qb6tqjsh" path="res://room2.tscn" id="2_room2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor_extended"]
+size = Vector2(5400, 64)
 
 [node name="Room1" instance=ExtResource("1_iu41x")]
 year_number = 1
 next_room_scene = ExtResource("2_room2")
 
 [node name="ColorRect" parent="." index="0"]
+offset_right = 5400.0
 color = Color(0.9, 0.85, 0.95, 1)
 
+[node name="Floor" parent="." index="1"]
+position = Vector2(2700, 688)
+
+[node name="CollisionShape2D" parent="Floor" index="0"]
+shape = SubResource("RectangleShape2D_floor_extended")
+
+[node name="ColorRect" parent="Floor" index="1"]
+offset_left = -2700.0
+offset_right = 2700.0
+
+[node name="Door" parent="." index="3"]
+position = Vector2(5336, 592)
+
 [node name="PictureFrame1" parent="." index="4"]
-offset_left = 180.0
+offset_left = 300.0
 offset_top = 200.0
-offset_right = 300.0
+offset_right = 420.0
 offset_bottom = 360.0
 
 [node name="Picture" parent="PictureFrame1" index="0"]
@@ -23,9 +40,9 @@ color = Color(1, 0.9, 0.9, 1)
 text = "💑"
 
 [node name="PictureFrame2" parent="." index="5"]
-offset_left = 320.0
+offset_left = 1000.0
 offset_top = 200.0
-offset_right = 440.0
+offset_right = 1120.0
 offset_bottom = 360.0
 
 [node name="Picture" parent="PictureFrame2" index="0"]
@@ -35,9 +52,9 @@ color = Color(0.9, 1, 0.9, 1)
 text = "🌟"
 
 [node name="PictureFrame3" parent="." index="6"]
-offset_left = 460.0
+offset_left = 1700.0
 offset_top = 200.0
-offset_right = 580.0
+offset_right = 1820.0
 offset_bottom = 360.0
 
 [node name="Picture" parent="PictureFrame3" index="0"]
@@ -47,60 +64,49 @@ color = Color(1, 1, 0.9, 1)
 text = "✨"
 
 [node name="PictureFrame4" parent="." index="7"]
-offset_left = 600.0
+offset_left = 2400.0
 offset_top = 200.0
-offset_right = 720.0
+offset_right = 2520.0
 offset_bottom = 360.0
 
 [node name="Picture" parent="PictureFrame4" index="0"]
 color = Color(0.9, 0.9, 1, 1)
 
 [node name="Label" parent="PictureFrame4/Picture" index="0"]
-text = "💕"
+text = "💖"
 
 [node name="PictureFrame5" parent="." index="8"]
-offset_left = 740.0
+offset_left = 3100.0
 offset_top = 200.0
-offset_right = 860.0
+offset_right = 3220.0
 offset_bottom = 360.0
 
 [node name="Picture" parent="PictureFrame5" index="0"]
-color = Color(1, 0.95, 1, 1)
+color = Color(1, 0.9, 1, 1)
 
 [node name="Label" parent="PictureFrame5/Picture" index="0"]
-text = "🎊"
+text = "🎉"
 
 [node name="PictureFrame6" parent="." index="9"]
-offset_left = 880.0
+offset_left = 3800.0
 offset_top = 200.0
-offset_right = 1000.0
+offset_right = 3920.0
 offset_bottom = 360.0
 
 [node name="Picture" parent="PictureFrame6" index="0"]
-color = Color(0.95, 1, 1, 1)
+color = Color(1, 1, 0.8, 1)
 
 [node name="Label" parent="PictureFrame6/Picture" index="0"]
 text = "🌈"
 
 [node name="PictureFrame7" parent="." index="10"]
-offset_left = 1020.0
+offset_left = 4500.0
 offset_top = 200.0
-offset_right = 1140.0
+offset_right = 4620.0
 offset_bottom = 360.0
 
 [node name="Picture" parent="PictureFrame7" index="0"]
-color = Color(1, 1, 0.95, 1)
+color = Color(0.8, 1, 1, 1)
 
 [node name="Label" parent="PictureFrame7/Picture" index="0"]
-text = "🎈"
-
-[node name="YearLabel" parent="UI" index="0"]
-text = "Year 1 - The Beginning"
-
-[editable path="PictureFrame1"]
-[editable path="PictureFrame2"]
-[editable path="PictureFrame3"]
-[editable path="PictureFrame4"]
-[editable path="PictureFrame5"]
-[editable path="PictureFrame6"]
-[editable path="PictureFrame7"]
+text = "💝"

@@ -1,145 +1,148 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0gk2qb6tqjsh"]
+[gd_scene load_steps=4 format=3 uid="uid://c0gk2qb6tqjsh"]
 
-[ext_resource type="PackedScene" uid="uid://bpylb00p1dh0k" path="res://room_template.tscn" id="1_t4q4u"]
-[ext_resource type="PackedScene" uid="uid://c1n72kh8w0t44" path="res://room3.tscn" id="2_room3"]
+[ext_resource type="PackedScene" uid="uid://bpylb00p1dh0k" path="res://room_template.tscn" id="1_iu41x"]
+[ext_resource type="PackedScene" uid="uid://c54a74f4iaqhy" path="res://room3.tscn" id="2_room3"]
 
-[node name="Room2" instance=ExtResource("1_t4q4u")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor_extended"]
+size = Vector2(7500, 64)
+
+[node name="Room2" instance=ExtResource("1_iu41x")]
 year_number = 2
 next_room_scene = ExtResource("2_room3")
 
 [node name="ColorRect" parent="." index="0"]
-color = Color(0.95, 0.9, 0.85, 1)
+offset_right = 7500.0
+color = Color(0.85, 0.9, 1, 1)
+
+[node name="Floor" parent="." index="1"]
+position = Vector2(3750, 688)
+
+[node name="CollisionShape2D" parent="Floor" index="0"]
+shape = SubResource("RectangleShape2D_floor_extended")
+
+[node name="ColorRect" parent="Floor" index="1"]
+offset_left = -3750.0
+offset_right = 3750.0
+
+[node name="Door" parent="." index="3"]
+position = Vector2(7436, 592)
 
 [node name="PictureFrame1" parent="." index="4"]
-offset_left = 150.0
+offset_left = 300.0
 offset_top = 200.0
-offset_right = 270.0
+offset_right = 420.0
 offset_bottom = 360.0
 
 [node name="Picture" parent="PictureFrame1" index="0"]
-color = Color(1, 0.95, 0.8, 1)
+color = Color(1, 0.8, 0.9, 1)
 
 [node name="Label" parent="PictureFrame1/Picture" index="0"]
-text = "🎉"
+text = "🎈"
 
 [node name="PictureFrame2" parent="." index="5"]
-offset_left = 420.0
-offset_top = 200.0
-offset_right = 540.0
-offset_bottom = 360.0
-
-[node name="Picture" parent="PictureFrame2" index="0"]
-color = Color(0.95, 0.9, 1, 1)
-
-[node name="Label" parent="PictureFrame2/Picture" index="0"]
-text = "💝"
-
-[node name="PictureFrame3" parent="." index="6"]
-offset_left = 580.0
-offset_top = 200.0
-offset_right = 700.0
-offset_bottom = 360.0
-
-[node name="Picture" parent="PictureFrame3" index="0"]
-color = Color(1, 0.9, 0.95, 1)
-
-[node name="Label" parent="PictureFrame3/Picture" index="0"]
-text = "🌹"
-
-[node name="PictureFrame4" parent="." index="7"]
-offset_left = 720.0
-offset_top = 200.0
-offset_right = 840.0
-offset_bottom = 360.0
-
-[node name="Picture" parent="PictureFrame4" index="0"]
-color = Color(0.95, 1, 0.9, 1)
-
-[node name="Label" parent="PictureFrame4/Picture" index="0"]
-text = "🎁"
-
-[node name="PictureFrame5" parent="." index="8"]
-offset_left = 860.0
-offset_top = 200.0
-offset_right = 980.0
-offset_bottom = 360.0
-
-[node name="Picture" parent="PictureFrame5" index="0"]
-color = Color(1, 0.95, 0.95, 1)
-
-[node name="Label" parent="PictureFrame5/Picture" index="0"]
-text = "💖"
-
-[node name="PictureFrame6" parent="." index="9"]
 offset_left = 1000.0
 offset_top = 200.0
 offset_right = 1120.0
 offset_bottom = 360.0
 
-[node name="Picture" parent="PictureFrame6" index="0"]
-color = Color(0.9, 0.95, 1, 1)
+[node name="Picture" parent="PictureFrame2" index="0"]
+color = Color(0.9, 1, 0.8, 1)
 
-[node name="Label" parent="PictureFrame6/Picture" index="0"]
-text = "🌟"
-
-[node name="PictureFrame7" parent="." index="10"]
-offset_left = 150.0
-offset_top = 400.0
-offset_right = 270.0
-offset_bottom = 560.0
-
-[node name="Picture" parent="PictureFrame7" index="0"]
-color = Color(1, 1, 0.85, 1)
-
-[node name="Label" parent="PictureFrame7/Picture" index="0"]
-text = "🎀"
-
-[node name="PictureFrame8" parent="." index="11"]
-offset_left = 290.0
-offset_top = 400.0
-offset_right = 410.0
-offset_bottom = 560.0
-
-[node name="Picture" parent="PictureFrame8" index="0"]
-color = Color(0.85, 1, 1, 1)
-
-[node name="Label" parent="PictureFrame8/Picture" index="0"]
-text = "🦋"
-
-[node name="PictureFrame9" parent="." index="12"]
-offset_left = 430.0
-offset_top = 400.0
-offset_right = 550.0
-offset_bottom = 560.0
-
-[node name="Picture" parent="PictureFrame9" index="0"]
-color = Color(1, 0.85, 0.95, 1)
-
-[node name="Label" parent="PictureFrame9/Picture" index="0"]
+[node name="Label" parent="PictureFrame2/Picture" index="0"]
 text = "🌺"
 
-[node name="PictureFrame10" parent="." index="13"]
-offset_left = 570.0
-offset_top = 400.0
-offset_right = 690.0
-offset_bottom = 560.0
+[node name="PictureFrame3" parent="." index="6"]
+offset_left = 1700.0
+offset_top = 200.0
+offset_right = 1820.0
+offset_bottom = 360.0
 
-[node name="Picture" parent="PictureFrame10" index="0"]
-color = Color(0.95, 0.95, 1, 1)
+[node name="Picture" parent="PictureFrame3" index="0"]
+color = Color(0.8, 0.9, 1, 1)
 
-[node name="Label" parent="PictureFrame10/Picture" index="0"]
+[node name="Label" parent="PictureFrame3/Picture" index="0"]
+text = "🎂"
+
+[node name="PictureFrame4" parent="." index="7"]
+offset_left = 2400.0
+offset_top = 200.0
+offset_right = 2520.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame4" index="0"]
+color = Color(1, 1, 0.8, 1)
+
+[node name="Label" parent="PictureFrame4/Picture" index="0"]
+text = "🎭"
+
+[node name="PictureFrame5" parent="." index="8"]
+offset_left = 3100.0
+offset_top = 200.0
+offset_right = 3220.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame5" index="0"]
+color = Color(1, 0.9, 1, 1)
+
+[node name="Label" parent="PictureFrame5/Picture" index="0"]
 text = "🎵"
 
-[node name="YearLabel" parent="UI" index="0"]
-text = "Year 2 - Growing Together"
+[node name="PictureFrame6" parent="." index="9"]
+offset_left = 3800.0
+offset_top = 200.0
+offset_right = 3920.0
+offset_bottom = 360.0
 
-[editable path="PictureFrame1"]
-[editable path="PictureFrame2"]
-[editable path="PictureFrame3"]
-[editable path="PictureFrame4"]
-[editable path="PictureFrame5"]
-[editable path="PictureFrame6"]
-[editable path="PictureFrame7"]
-[editable path="PictureFrame8"]
-[editable path="PictureFrame9"]
-[editable path="PictureFrame10"]
+[node name="Picture" parent="PictureFrame6" index="0"]
+color = Color(0.9, 0.8, 1, 1)
+
+[node name="Label" parent="PictureFrame6/Picture" index="0"]
+text = "🌸"
+
+[node name="PictureFrame7" parent="." index="10"]
+offset_left = 4500.0
+offset_top = 200.0
+offset_right = 4620.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame7" index="0"]
+color = Color(1, 0.8, 0.8, 1)
+
+[node name="Label" parent="PictureFrame7/Picture" index="0"]
+text = "🍰"
+
+[node name="PictureFrame8" parent="." index="11"]
+offset_left = 5200.0
+offset_top = 200.0
+offset_right = 5320.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame8" index="0"]
+color = Color(0.8, 1, 1, 1)
+
+[node name="Label" parent="PictureFrame8/Picture" index="0"]
+text = "🎀"
+
+[node name="PictureFrame9" parent="." index="12"]
+offset_left = 5900.0
+offset_top = 200.0
+offset_right = 6020.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame9" index="0"]
+color = Color(1, 1, 0.9, 1)
+
+[node name="Label" parent="PictureFrame9/Picture" index="0"]
+text = "🌼"
+
+[node name="PictureFrame10" parent="." index="13"]
+offset_left = 6600.0
+offset_top = 200.0
+offset_right = 6720.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame10" index="0"]
+color = Color(0.9, 1, 1, 1)
+
+[node name="Label" parent="PictureFrame10/Picture" index="0"]
+text = "💫"
