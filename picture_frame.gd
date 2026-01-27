@@ -5,22 +5,6 @@ extends ColorRect
 @onready var up_arrow = $UpArrow
 
 func _ready():
-	# Debug: Check if nodes exist
-	if not up_arrow:
-		push_error("UpArrow node not found!")
-	else:
-		print("Frame: ", name, " - UpArrow found at global pos: ", up_arrow.global_position, " visible: ", up_arrow.visible)
-		print("  offset_left: ", up_arrow.offset_left, " offset_top: ", up_arrow.offset_top)
-	
-	var detection_area = $DetectionArea
-	if not detection_area:
-		push_error("DetectionArea not found!")
-	else:
-		print("Frame: ", name, " - DetectionArea at global pos: ", detection_area.global_position)
-		print("  local position: ", detection_area.position)
-	
-	print("Frame: ", name, " - Frame global position: ", global_position, " size: ", size)
-	
 	# Check if Picture node has a Sprite2D child for custom texture
 	var sprite = picture.get_node_or_null("Sprite2D")
 	if sprite and sprite.texture:
@@ -84,22 +68,14 @@ func scale_frame_to_texture(texture: Texture2D):
 		detection_area.position.y = size.y + 20
 
 func _on_detection_area_body_entered(body):
-	print("Body entered detection area: ", body.name)
 	if body.name == "Player":
-		print("Player detected! Showing arrow")
 		up_arrow.visible = true
 		if body.has_method("add_nearby_frame"):
 			body.add_nearby_frame(self)
-		else:
-			push_warning("Player doesn't have add_nearby_frame method")
 
 func _on_detection_area_body_exited(body):
-	print("Body exited detection area: ", body.name)
 	if body.name == "Player":
-		print("Player left! Hiding arrow")
 		up_arrow.visible = false
 		if body.has_method("remove_nearby_frame"):
 			body.remove_nearby_frame(self)
-		else:
-			push_warning("Player doesn't have remove_nearby_frame method")
 
