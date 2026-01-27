@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpylb00p1dh0k"]
+[gd_scene load_steps=8 format=3 uid="uid://bpylb00p1dh0k"]
 
 [ext_resource type="Script" path="res://room.gd" id="1_qfgn3"]
 [ext_resource type="PackedScene" uid="uid://chkdgmqm4qxfh" path="res://player.tscn" id="2_4y8hb"]
 [ext_resource type="PackedScene" uid="uid://cbjuprj5hjprs" path="res://confetti.tscn" id="3_2q7w3"]
+[ext_resource type="PackedScene" uid="uid://bfj8w7n5qhxvj" path="res://picture_frame.tscn" id="4_frame"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(1280, 64)
@@ -60,122 +61,41 @@ offset_bottom = -48.0
 text = "→"
 horizontal_alignment = 1
 
-[node name="PictureFrame1" type="ColorRect" parent="."]
+[node name="PictureFrame1" parent="." instance=ExtResource("4_frame")]
 offset_left = 200.0
 offset_top = 200.0
 offset_right = 320.0
 offset_bottom = 360.0
-color = Color(0.6, 0.5, 0.4, 1)
 
-[node name="Picture" type="ColorRect" parent="PictureFrame1"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -70.0
-offset_right = 50.0
-offset_bottom = 70.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Picture" parent="PictureFrame1" index="0"]
 color = Color(1, 0.8, 0.8, 1)
 
-[node name="Label" type="Label" parent="PictureFrame1/Picture"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -12.0
-offset_right = 50.0
-offset_bottom = 14.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Label" parent="PictureFrame1/Picture" index="0"]
 text = "❤"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="PictureFrame2" type="ColorRect" parent="."]
+[node name="PictureFrame2" parent="." instance=ExtResource("4_frame")]
 offset_left = 500.0
 offset_top = 250.0
 offset_right = 620.0
 offset_bottom = 410.0
-color = Color(0.6, 0.5, 0.4, 1)
 
-[node name="Picture" type="ColorRect" parent="PictureFrame2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -70.0
-offset_right = 50.0
-offset_bottom = 70.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Picture" parent="PictureFrame2" index="0"]
 color = Color(0.8, 1, 0.8, 1)
 
-[node name="Label" type="Label" parent="PictureFrame2/Picture"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -12.0
-offset_right = 50.0
-offset_bottom = 14.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Label" parent="PictureFrame2/Picture" index="0"]
 text = "📷"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="PictureFrame3" type="ColorRect" parent="."]
+[node name="PictureFrame3" parent="." instance=ExtResource("4_frame")]
 offset_left = 800.0
 offset_top = 200.0
 offset_right = 920.0
 offset_bottom = 360.0
-color = Color(0.6, 0.5, 0.4, 1)
 
-[node name="Picture" type="ColorRect" parent="PictureFrame3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -70.0
-offset_right = 50.0
-offset_bottom = 70.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Picture" parent="PictureFrame3" index="0"]
 color = Color(0.8, 0.8, 1, 1)
 
-[node name="Label" type="Label" parent="PictureFrame3/Picture"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -12.0
-offset_right = 50.0
-offset_bottom = 14.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Label" parent="PictureFrame3/Picture" index="0"]
 text = "💕"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -191,3 +111,7 @@ label_settings = SubResource("LabelSettings_1")
 position = Vector2(640, 100)
 
 [connection signal="body_entered" from="Door" to="." method="_on_door_area_body_entered"]
+
+[editable path="PictureFrame1"]
+[editable path="PictureFrame2"]
+[editable path="PictureFrame3"]
