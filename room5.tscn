@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjo3dg7vx1bnt"]
+
+[ext_resource type="PackedScene" uid="uid://bpylb00p1dh0k" path="res://room_template.tscn" id="1_q42dh"]
+
+[node name="Room5" instance=ExtResource("1_q42dh")]
+year_number = 5
+
+[node name="ColorRect" parent="." index="0"]
+color = Color(1, 0.95, 0.85, 1)
+
+[node name="PictureFrame1" parent="." index="4"]
+offset_left = 160.0
+offset_top = 150.0
+offset_right = 280.0
+offset_bottom = 310.0
+
+[node name="Picture" parent="PictureFrame1" index="0"]
+color = Color(1, 0.85, 0.85, 1)
+
+[node name="Label" parent="PictureFrame1/Picture" index="0"]
+text = "💗"
+
+[node name="PictureFrame2" parent="." index="5"]
+offset_left = 410.0
+offset_top = 200.0
+offset_right = 530.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame2" index="0"]
+color = Color(1, 1, 0.85, 1)
+
+[node name="Label" parent="PictureFrame2/Picture" index="0"]
+text = "🥳"
+
+[node name="PictureFrame3" parent="." index="6"]
+offset_left = 720.0
+offset_top = 160.0
+offset_right = 840.0
+offset_bottom = 320.0
+
+[node name="Picture" parent="PictureFrame3" index="0"]
+color = Color(0.85, 0.85, 1, 1)
+
+[node name="Label" parent="PictureFrame3/Picture" index="0"]
+text = "💫"
+
+[node name="Door" parent="." index="7"]
+visible = false
+
+[node name="YearLabel" parent="UI" index="0"]
+text = "Year 5 - Forever & Always ❤"
+
+[node name="FinalMessage" type="Label" parent="UI" index="1"]
+offset_left = 320.0
+offset_top = 500.0
+offset_right = 960.0
+offset_bottom = 600.0
+text = "Thank you for 5 amazing years!
+Here's to many more adventures together 💕"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[editable path="PictureFrame1"]
+[editable path="PictureFrame2"]
+[editable path="PictureFrame3"]

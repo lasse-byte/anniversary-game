@@ -1,0 +1,17 @@
+# Ignore Godot build files
+.godot/
+builds/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Ignore export templates
+*.import.bak

@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1n72kh8w0t44"]
+
+[ext_resource type="PackedScene" uid="uid://bpylb00p1dh0k" path="res://room_template.tscn" id="1_1kgbh"]
+[ext_resource type="PackedScene" uid="uid://c8rkpq1h84vvq" path="res://room4.tscn" id="2_room4"]
+
+[node name="Room3" instance=ExtResource("1_1kgbh")]
+year_number = 3
+next_room_scene = ExtResource("2_room4")
+
+[node name="ColorRect" parent="." index="0"]
+color = Color(0.85, 0.95, 0.9, 1)
+
+[node name="PictureFrame1" parent="." index="4"]
+offset_left = 200.0
+offset_top = 190.0
+offset_right = 320.0
+offset_bottom = 350.0
+
+[node name="Picture" parent="PictureFrame1" index="0"]
+color = Color(0.9, 1, 1, 1)
+
+[node name="Label" parent="PictureFrame1/Picture" index="0"]
+text = "🎈"
+
+[node name="PictureFrame2" parent="." index="5"]
+offset_left = 480.0
+offset_top = 210.0
+offset_right = 600.0
+offset_bottom = 370.0
+
+[node name="Picture" parent="PictureFrame2" index="0"]
+color = Color(1, 1, 0.9, 1)
+
+[node name="Label" parent="PictureFrame2/Picture" index="0"]
+text = "✨"
+
+[node name="PictureFrame3" parent="." index="6"]
+offset_left = 780.0
+offset_top = 170.0
+offset_right = 900.0
+offset_bottom = 330.0
+
+[node name="Picture" parent="PictureFrame3" index="0"]
+color = Color(1, 0.95, 1, 1)
+
+[node name="Label" parent="PictureFrame3/Picture" index="0"]
+text = "💖"
+
+[node name="YearLabel" parent="UI" index="0"]
+text = "Year 3 - Adventures"
+
+[editable path="PictureFrame1"]
+[editable path="PictureFrame2"]
+[editable path="PictureFrame3"]
