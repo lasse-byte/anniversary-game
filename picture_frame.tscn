@@ -44,7 +44,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DetectionArea" type="Area2D" parent="."]
-position = Vector2(60, 180)
+position = Vector2(60, 488)
 collision_layer = 2
 collision_mask = 1
 
@@ -54,9 +54,9 @@ shape = SubResource("RectangleShape2D_detect")
 [node name="UpArrow" type="Label" parent="."]
 visible = false
 offset_left = 40.0
-offset_top = 170.0
+offset_top = 488.0
 offset_right = 80.0
-offset_bottom = 200.0
+offset_bottom = 518.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "↑"

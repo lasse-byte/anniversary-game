@@ -59,13 +59,13 @@ func scale_frame_to_texture(texture: Texture2D):
 	if up_arrow:
 		up_arrow.offset_left = size.x / 2 - 20
 		up_arrow.offset_right = size.x / 2 + 20
-		up_arrow.offset_top = size.y + 10
-		up_arrow.offset_bottom = size.y + 40
+		up_arrow.offset_top = size.y + 488
+		up_arrow.offset_bottom = size.y + 518
 	
 	var detection_area = $DetectionArea
 	if detection_area:
 		detection_area.position.x = size.x / 2
-		detection_area.position.y = size.y + 20
+		detection_area.position.y = 488 + 20  # Position on floor level
 
 func _on_detection_area_body_entered(body):
 	if body.name == "Player":
