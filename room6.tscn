@@ -1,17 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://room6_final_uid"]
 
 [ext_resource type="Script" path="res://room_final.gd" id="1_script"]
-[ext_resource type="PackedScene" uid="uid://player_packed_scene" path="res://player.tscn" id="2_player"]
 [ext_resource type="Script" path="res://draggable_textbox.gd" id="3_textbox"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
-size = Vector2(2200, 100)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_center"]
-size = Vector2(400, 100)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_textbox"]
-size = Vector2(1100, 400)
 
 [sub_resource type="Gradient" id="Gradient_confetti"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -73,65 +63,35 @@ script = ExtResource("1_script")
 room_color = Color(0.98, 0.93, 0.95, 1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 2200.0
-offset_bottom = 800.0
+offset_right = 1280.0
+offset_bottom = 720.0
 color = Color(0.98, 0.93, 0.95, 1)
 
 [node name="Label" type="Label" parent="."]
-offset_left = 400.0
+offset_left = 190.0
 offset_top = 50.0
-offset_right = 1800.0
+offset_right = 1090.0
 offset_bottom = 150.0
 theme_override_font_sizes/font_size = 56
 text = "The Final Chapter ❤️"
 horizontal_alignment = 1
 
-[node name="Floor" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(1100.0, 750)
-shape = SubResource("RectangleShape2D_floor")
-
-[node name="ColorRect" type="ColorRect" parent="Floor"]
-offset_top = 700.0
-offset_right = 2200.0
-offset_bottom = 800.0
-color = Color(0.6, 0.4, 0.2, 1)
-
-[node name="Player" parent="." instance=ExtResource("2_player")]
-position = Vector2(100, 650)
-
-[node name="CenterArea" type="Area2D" parent="."]
-position = Vector2(1100, 650)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterArea"]
-shape = SubResource("RectangleShape2D_center")
-
-[node name="DraggableTextBox" type="TextEdit" parent="."]
-offset_left = 600.0
+[node name="TextBox" type="TextEdit" parent="."]
+offset_left = 240.0
 offset_top = 250.0
-offset_right = 1600.0
+offset_right = 1040.0
 offset_bottom = 550.0
 theme_override_colors/background_color = Color(1, 0.95, 0.9, 0.9)
 theme_override_colors/font_color = Color(0.2, 0.1, 0.15, 1)
 theme_override_font_sizes/font_size = 32
 text = "Write your message here!
 
-Drag me around to position me wherever you want!"
+A perfect ending to your journey together!"
 wrap_mode = 1
 script = ExtResource("3_textbox")
 
-[node name="DetectionArea" type="Area2D" parent="DraggableTextBox"]
-position = Vector2(500, 400)
-collision_layer = 0
-collision_mask = 1
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DraggableTextBox/DetectionArea"]
-shape = SubResource("RectangleShape2D_textbox")
-
 [node name="ConfettiLeft" type="GPUParticles2D" parent="."]
-position = Vector2(100, 400)
+position = Vector2(100, 100)
 emitting = false
 amount = 150
 process_material = SubResource("ParticleProcessMaterial_left")
@@ -140,7 +100,7 @@ one_shot = true
 explosiveness = 1.0
 
 [node name="ConfettiRight" type="GPUParticles2D" parent="."]
-position = Vector2(2100, 400)
+position = Vector2(1180, 100)
 emitting = false
 amount = 150
 process_material = SubResource("ParticleProcessMaterial_right")
@@ -157,7 +117,3 @@ offset_right = 400.0
 offset_bottom = 50.0
 theme_override_font_sizes/font_size = 24
 text = "Forever & Always 💕"
-
-[connection signal="body_entered" from="CenterArea" to="." method="_on_center_area_body_entered"]
-[connection signal="body_entered" from="DraggableTextBox/DetectionArea" to="DraggableTextBox" method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="DraggableTextBox/DetectionArea" to="DraggableTextBox" method="_on_detection_area_body_exited"]
