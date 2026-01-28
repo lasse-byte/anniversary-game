@@ -20,9 +20,14 @@ extends ColorRect
 var fade_tween: Tween
 
 func _ready():
-	# Set the description text from the export variable
+	# Set the description text from the export variable only if the export was customized
+	# This allows both: 1) Setting text in the editor on the Label node, and
+	# 2) Setting text via the export variable when instantiating programmatically
 	if description_label:
-		description_label.text = description_text
+		# Only override if export variable was changed from default
+		var default_text = "A beautiful memory from our journey together"
+		if description_text != default_text:
+			description_label.text = description_text
 	# Check if Picture node has a Sprite2D child for custom texture
 	var sprite = picture.get_node_or_null("Sprite2D")
 	if sprite and sprite.texture:
