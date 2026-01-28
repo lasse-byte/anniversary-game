@@ -1,0 +1,117 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpylb00p1dh0k"]
+
+[ext_resource type="Script" path="res://room.gd" id="1_qfgn3"]
+[ext_resource type="PackedScene" uid="uid://chkdgmqm4qxfh" path="res://player.tscn" id="2_4y8hb"]
+[ext_resource type="PackedScene" uid="uid://cbjuprj5hjprs" path="res://confetti.tscn" id="3_2q7w3"]
+[ext_resource type="PackedScene" uid="uid://bfj8w7n5qhxvj" path="res://picture_frame.tscn" id="4_frame"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
+size = Vector2(1280, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(64, 128)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1"]
+font_size = 48
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_qfgn3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.8, 0.9, 1, 1)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(640, 688)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_floor")
+
+[node name="ColorRect" type="ColorRect" parent="Floor"]
+offset_left = -640.0
+offset_top = -32.0
+offset_right = 640.0
+offset_bottom = 32.0
+color = Color(0.4, 0.3, 0.2, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_4y8hb")]
+position = Vector2(100, 600)
+
+[node name="Door" type="Area2D" parent="."]
+position = Vector2(1216, 592)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+shape = SubResource("RectangleShape2D_door")
+
+[node name="ColorRect" type="ColorRect" parent="Door"]
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
+offset_bottom = 64.0
+color = Color(0.6, 0.4, 0.2, 1)
+
+[node name="Label" type="Label" parent="Door"]
+offset_left = -32.0
+offset_top = -80.0
+offset_right = 32.0
+offset_bottom = -48.0
+text = "→"
+horizontal_alignment = 1
+
+[node name="PictureFrame1" parent="." instance=ExtResource("4_frame")]
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 320.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame1" index="0"]
+color = Color(1, 0.8, 0.8, 1)
+
+[node name="Label" parent="PictureFrame1/Picture" index="0"]
+text = "❤"
+
+[node name="PictureFrame2" parent="." instance=ExtResource("4_frame")]
+offset_left = 500.0
+offset_top = 200.0
+offset_right = 620.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame2" index="0"]
+color = Color(0.8, 1, 0.8, 1)
+
+[node name="Label" parent="PictureFrame2/Picture" index="0"]
+text = "📷"
+
+[node name="PictureFrame3" parent="." instance=ExtResource("4_frame")]
+offset_left = 800.0
+offset_top = 200.0
+offset_right = 920.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame3" index="0"]
+color = Color(0.8, 0.8, 1, 1)
+
+[node name="Label" parent="PictureFrame3/Picture" index="0"]
+text = "💕"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="YearLabel" type="Label" parent="UI"]
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 240.0
+offset_bottom = 104.0
+text = "Year 1"
+label_settings = SubResource("LabelSettings_1")
+
+[node name="Confetti" parent="." instance=ExtResource("3_2q7w3")]
+position = Vector2(640, 100)
+
+[connection signal="body_entered" from="Door" to="." method="_on_door_area_body_entered"]
+
+[editable path="PictureFrame1"]
+[editable path="PictureFrame2"]
+[editable path="PictureFrame3"]

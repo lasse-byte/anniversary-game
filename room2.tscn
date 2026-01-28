@@ -1,0 +1,217 @@
+[gd_scene load_steps=5 format=3 uid="uid://room2_uid"]
+
+[ext_resource type="PackedScene" uid="uid://c12345678902" path="res://picture_frame.tscn" id="4_frame"]
+[ext_resource type="Script" path="res://room.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://player_packed_scene" path="res://player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://room3_uid" path="res://room3.tscn" id="5_room3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
+size = Vector2(7500, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(50, 100)
+
+[node name="Room2" type="Node2D"]
+script = ExtResource("1_script")
+year_number = 2
+room_color = Color(0.85, 0.9, 0.95, 1)
+next_room_scene = ExtResource("5_room3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 7500.0
+offset_bottom = 800.0
+color = Color(0.85, 0.9, 0.95, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 400.0
+offset_top = 50.0
+offset_right = 800.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 48
+text = "Year 2 - Growing Together"
+horizontal_alignment = 1
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(3750.0, 750)
+shape = SubResource("RectangleShape2D_floor")
+
+[node name="ColorRect" type="ColorRect" parent="Floor"]
+offset_top = 700.0
+offset_right = 7500.0
+offset_bottom = 800.0
+color = Color(0.6, 0.4, 0.2, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(100, 650)
+
+[node name="Door" type="Area2D" parent="."]
+position = Vector2(7450, 600)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2(0, 50)
+shape = SubResource("RectangleShape2D_door")
+
+[node name="ColorRect" type="ColorRect" parent="Door"]
+offset_left = -25.0
+offset_right = 25.0
+offset_bottom = 100.0
+color = Color(0.8, 0.6, 0.2, 1)
+
+[node name="Label" type="Label" parent="Door"]
+offset_left = -15.0
+offset_top = 35.0
+offset_right = 15.0
+offset_bottom = 65.0
+text = "→"
+horizontal_alignment = 1
+
+[node name="PictureFrame1" parent="." instance=ExtResource("4_frame")]
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 320.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame1" index="0"]
+color = Color(1, 0.9, 0.95, 1)
+
+[node name="Label" parent="PictureFrame1/Picture" index="0"]
+text = "💑"
+
+[node name="PictureFrame2" parent="." instance=ExtResource("4_frame")]
+offset_left = 900.0
+offset_top = 200.0
+offset_right = 1020.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame2" index="0"]
+color = Color(0.95, 0.9, 1, 1)
+
+[node name="Label" parent="PictureFrame2/Picture" index="0"]
+text = "🌹"
+
+[node name="PictureFrame3" parent="." instance=ExtResource("4_frame")]
+offset_left = 1600.0
+offset_top = 200.0
+offset_right = 1720.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame3" index="0"]
+color = Color(0.9, 0.95, 1, 1)
+
+[node name="Label" parent="PictureFrame3/Picture" index="0"]
+text = "🎁"
+
+[node name="PictureFrame4" parent="." instance=ExtResource("4_frame")]
+offset_left = 2300.0
+offset_top = 200.0
+offset_right = 2420.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame4" index="0"]
+color = Color(1, 0.95, 0.9, 1)
+
+[node name="Label" parent="PictureFrame4/Picture" index="0"]
+text = "🍰"
+
+[node name="PictureFrame5" parent="." instance=ExtResource("4_frame")]
+offset_left = 3000.0
+offset_top = 200.0
+offset_right = 3120.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame5" index="0"]
+color = Color(0.95, 1, 0.9, 1)
+
+[node name="Label" parent="PictureFrame5/Picture" index="0"]
+text = "🎵"
+
+[node name="PictureFrame6" parent="." instance=ExtResource("4_frame")]
+offset_left = 3700.0
+offset_top = 200.0
+offset_right = 3820.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame6" index="0"]
+color = Color(0.9, 1, 0.95, 1)
+
+[node name="Label" parent="PictureFrame6/Picture" index="0"]
+text = "🌺"
+
+[node name="PictureFrame7" parent="." instance=ExtResource("4_frame")]
+offset_left = 4400.0
+offset_top = 200.0
+offset_right = 4520.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame7" index="0"]
+color = Color(1, 0.9, 0.9, 1)
+
+[node name="Label" parent="PictureFrame7/Picture" index="0"]
+text = "💝"
+
+[node name="PictureFrame8" parent="." instance=ExtResource("4_frame")]
+offset_left = 5100.0
+offset_top = 200.0
+offset_right = 5220.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame8" index="0"]
+color = Color(0.95, 0.95, 1, 1)
+
+[node name="Label" parent="PictureFrame8/Picture" index="0"]
+text = "🌈"
+
+[node name="PictureFrame9" parent="." instance=ExtResource("4_frame")]
+offset_left = 5800.0
+offset_top = 200.0
+offset_right = 5920.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame9" index="0"]
+color = Color(1, 0.95, 0.95, 1)
+
+[node name="Label" parent="PictureFrame9/Picture" index="0"]
+text = "⭐"
+
+[node name="PictureFrame10" parent="." instance=ExtResource("4_frame")]
+offset_left = 6500.0
+offset_top = 200.0
+offset_right = 6620.0
+offset_bottom = 360.0
+
+[node name="Picture" parent="PictureFrame10" index="0"]
+color = Color(0.95, 1, 0.95, 1)
+
+[node name="Label" parent="PictureFrame10/Picture" index="0"]
+text = "🎀"
+
+[editable path="PictureFrame2"]
+[editable path="PictureFrame3"]
+[editable path="PictureFrame4"]
+[editable path="PictureFrame5"]
+[editable path="PictureFrame6"]
+[editable path="PictureFrame7"]
+[editable path="PictureFrame8"]
+[editable path="PictureFrame9"]
+[editable path="PictureFrame10"]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="YearLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 24
+
+[node name="Confetti" type="GPUParticles2D" parent="."]
+position = Vector2(600, -50)
+emitting = false
+amount = 100
+process_material = null
+lifetime = 3.0
+
+[connection signal="body_entered" from="Door" to="." method="_on_door_area_body_entered"]
+
+[editable path="PictureFrame1"]
