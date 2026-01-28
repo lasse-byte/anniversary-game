@@ -123,9 +123,9 @@ func fade_out_description_text():
 	if fade_tween:
 		fade_tween.kill()
 	
-	# Create new tween for fade out
+	# Create new tween for fade out (1.5 seconds for slower fade)
 	fade_tween = create_tween()
 	fade_tween.set_ease(Tween.EASE_IN)
 	fade_tween.set_trans(Tween.TRANS_CUBIC)
-	fade_tween.tween_property(description_label, "modulate:a", 0.0, 0.3)
+	fade_tween.tween_property(description_label, "modulate:a", 0.0, 1.5)
 
