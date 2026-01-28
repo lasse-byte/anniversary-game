@@ -1,10 +1,18 @@
 extends ColorRect
 
+@export var description_text: String = "A beautiful memory from our journey together"
+
 @onready var picture = $Picture
 @onready var label = $Picture/Label
 @onready var up_arrow = $UpArrow
+@onready var description_label = $DescriptionText
+
+var fade_tween: Tween
 
 func _ready():
+	# Set the description text from the export variable
+	if description_label:
+		description_label.text = description_text
 	# Check if Picture node has a Sprite2D child for custom texture
 	var sprite = picture.get_node_or_null("Sprite2D")
 	if sprite and sprite.texture:
@@ -72,10 +80,42 @@ func _on_detection_area_body_entered(body):
 		# Arrow removed - no longer shown
 		if body.has_method("add_nearby_frame"):
 			body.add_nearby_frame(self)
+		# Fade in description text
+		fade_in_description_text()
 
 func _on_detection_area_body_exited(body):
 	if body.name == "Player":
 		# Arrow removed - no longer shown
 		if body.has_method("remove_nearby_frame"):
 			body.remove_nearby_frame(self)
+		# Fade out description text
+		fade_out_description_text()
+
+func fade_in_description_text():
+	if not description_label:
+		return
+	
+	# Kill any existing tween
+	if fade_tween:
+		fade_tween.kill()
+	
+	# Create new tween for fade in
+	fade_tween = create_tween()
+	fade_tween.set_ease(Tween.EASE_OUT)
+	fade_tween.set_trans(Tween.TRANS_CUBIC)
+	fade_tween.tween_property(description_label, "modulate:a", 1.0, 0.5)
+
+func fade_out_description_text():
+	if not description_label:
+		return
+	
+	# Kill any existing tween
+	if fade_tween:
+		fade_tween.kill()
+	
+	# Create new tween for fade out
+	fade_tween = create_tween()
+	fade_tween.set_ease(Tween.EASE_IN)
+	fade_tween.set_trans(Tween.TRANS_CUBIC)
+	fade_tween.tween_property(description_label, "modulate:a", 0.0, 0.3)
 
