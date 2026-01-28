@@ -1,0 +1,149 @@
+[gd_scene load_steps=6 format=3 uid="uid://room6_final_uid"]
+
+[ext_resource type="Script" path="res://room_final.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://player_packed_scene" path="res://player.tscn" id="2_player"]
+[ext_resource type="Script" path="res://draggable_textbox.gd" id="3_textbox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
+size = Vector2(2200, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_center"]
+size = Vector2(400, 100)
+
+[sub_resource type="Gradient" id="Gradient_confetti"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0.2, 0.5, 1, 1, 0.8, 0.2, 1, 0.2, 0.5, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_confetti"]
+gradient = SubResource("Gradient_confetti")
+
+[sub_resource type="Curve" id="Curve_confetti"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_left"]
+emission_shape = 3
+emission_box_extents = Vector3(50, 200, 1)
+particle_flag_disable_z = true
+direction = Vector3(1, -0.5, 0)
+spread = 30.0
+gravity = Vector3(0, 300, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 350.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+radial_accel_min = -10.0
+radial_accel_max = 10.0
+tangential_accel_min = -20.0
+tangential_accel_max = 20.0
+damping_min = 10.0
+damping_max = 20.0
+scale_min = 3.0
+scale_max = 8.0
+color_ramp = SubResource("GradientTexture1D_confetti")
+alpha_curve = SubResource("Curve_confetti")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_right"]
+emission_shape = 3
+emission_box_extents = Vector3(50, 200, 1)
+particle_flag_disable_z = true
+direction = Vector3(-1, -0.5, 0)
+spread = 30.0
+gravity = Vector3(0, 300, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 350.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+radial_accel_min = -10.0
+radial_accel_max = 10.0
+tangential_accel_min = -20.0
+tangential_accel_max = 20.0
+damping_min = 10.0
+damping_max = 20.0
+scale_min = 3.0
+scale_max = 8.0
+color_ramp = SubResource("GradientTexture1D_confetti")
+alpha_curve = SubResource("Curve_confetti")
+
+[node name="Room6" type="Node2D"]
+script = ExtResource("1_script")
+room_color = Color(0.98, 0.93, 0.95, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 2200.0
+offset_bottom = 800.0
+color = Color(0.98, 0.93, 0.95, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 400.0
+offset_top = 50.0
+offset_right = 1800.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 56
+text = "The Final Chapter ❤️"
+horizontal_alignment = 1
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(1100.0, 750)
+shape = SubResource("RectangleShape2D_floor")
+
+[node name="ColorRect" type="ColorRect" parent="Floor"]
+offset_top = 700.0
+offset_right = 2200.0
+offset_bottom = 800.0
+color = Color(0.6, 0.4, 0.2, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(100, 650)
+
+[node name="CenterArea" type="Area2D" parent="."]
+position = Vector2(1100, 650)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterArea"]
+shape = SubResource("RectangleShape2D_center")
+
+[node name="DraggableTextBox" type="TextEdit" parent="."]
+offset_left = 600.0
+offset_top = 250.0
+offset_right = 1600.0
+offset_bottom = 550.0
+theme_override_colors/background_color = Color(1, 0.95, 0.9, 0.9)
+theme_override_colors/font_color = Color(0.2, 0.1, 0.15, 1)
+theme_override_font_sizes/font_size = 32
+text = "Write your message here!
+
+Drag me around to position me wherever you want!"
+wrap_mode = 1
+script = ExtResource("3_textbox")
+
+[node name="ConfettiLeft" type="GPUParticles2D" parent="."]
+position = Vector2(100, 400)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_left")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="ConfettiRight" type="GPUParticles2D" parent="."]
+position = Vector2(2100, 400)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_right")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="YearLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 400.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 24
+text = "Forever & Always 💕"
+
+[connection signal="body_entered" from="CenterArea" to="." method="_on_center_area_body_entered"]

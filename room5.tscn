@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://room5_uid"]
+[gd_scene load_steps=6 format=3 uid="uid://room5_uid"]
 
 [ext_resource type="PackedScene" uid="uid://c12345678905" path="res://picture_frame.tscn" id="4_frame"]
 [ext_resource type="Script" path="res://room.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://player_packed_scene" path="res://player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://room6_final_uid" path="res://room6.tscn" id="5_room6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(7500, 100)
@@ -14,6 +15,7 @@ size = Vector2(50, 100)
 script = ExtResource("1_script")
 year_number = 5
 room_color = Color(0.95, 0.85, 0.9, 1)
+next_room_scene = ExtResource("5_room6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 7500.0
