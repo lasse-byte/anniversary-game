@@ -42,8 +42,8 @@ func _ready():
 	# Check if Picture node has a Sprite2D child for custom texture
 	var sprite = picture.get_node_or_null("Sprite2D")
 	if sprite and sprite.texture:
-		# For scaled frames, always reposition text to stay under the frame
-		# unless user explicitly wants to preserve custom position
+		# Scale frame to fit texture, which will also reposition description text
+		# (unless user has enabled custom positioning)
 		scale_frame_to_texture(sprite.texture)
 	else:
 		# For default-sized frames, auto-position if not using custom position
@@ -113,13 +113,18 @@ func scale_frame_to_texture(texture: Texture2D):
 		position_description_text_under_frame()
 
 func position_description_text_under_frame():
-	"""Position the description text directly under the frame, regardless of frame size."""
+	# Position the description text directly under the frame, regardless of frame size.
+	# Text width adapts to frame width for better appearance.
 	if not description_label:
 		return
 	
 	var text_margin = 10.0  # Space between frame bottom and text
 	var text_height = 40.0  # Height of the text area
-	var text_width = 320.0  # Width of the text area
+	
+	# Make text width responsive to frame width, but with reasonable limits
+	var min_text_width = 200.0  # Minimum width for readability
+	var max_text_width = 320.0  # Maximum width to prevent excessive spreading
+	var text_width = clamp(size.x + 100.0, min_text_width, max_text_width)
 	
 	description_label.offset_top = size.y + text_margin
 	description_label.offset_bottom = size.y + text_margin + text_height

@@ -25,10 +25,10 @@ If you want to drag the description text to a custom position and have it stay t
 5. **Expand the PictureFrame node** in the scene tree (click the arrow next to it)
 6. **Select the "DescriptionText" child node**
 7. **Drag it** to your desired position in the editor, OR adjust the Layout properties in the Inspector:
-   - `offset_top`: Vertical position
-   - `offset_left`: Left edge
-   - `offset_right`: Right edge
-   - `offset_bottom`: Bottom edge
+   - `offset_top`: Vertical position (distance from frame's top edge)
+   - `offset_left`: Left edge position
+   - `offset_right`: Right edge position
+   - Note: `offset_bottom` is typically auto-calculated
 8. **Save the scene** (Ctrl+S or Cmd+S)
 
 **Important:** The custom position will only persist if you have enabled "Use Custom Description Position" in step 4!
