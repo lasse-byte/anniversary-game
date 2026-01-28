@@ -64,7 +64,7 @@ func enter_frame_view(frame: Control):
 	viewing_frame = true
 	current_frame = frame
 	
-	# Smoothly move camera to frame
+	# Smoothly move camera to frame (1.5 seconds for slower movement)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
@@ -77,17 +77,17 @@ func enter_frame_view(frame: Control):
 	
 	# Calculate offset needed (frame position - player position)
 	var offset = frame_global_pos - global_position
-	tween.tween_property(camera, "offset", offset, 0.5)
+	tween.tween_property(camera, "offset", offset, 1.5)
 
 func exit_frame_view():
 	viewing_frame = false
 	current_frame = null
 	
-	# Return camera to player
+	# Return camera to player (1.5 seconds for slower movement)
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(camera, "offset", Vector2.ZERO, 0.5)
+	tween.tween_property(camera, "offset", Vector2.ZERO, 1.5)
 
 func add_nearby_frame(frame: Control):
 	if frame not in nearby_frames:
