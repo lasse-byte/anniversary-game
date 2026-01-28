@@ -1,5 +1,38 @@
 # Description Text Guide
 
+## Recent Fix (2026-01-28): Automatic Positioning Under Frames
+
+**FIXED:** Description text now automatically positions itself directly UNDER picture frames, regardless of frame size!
+
+### What was fixed:
+1. **Scaled frames**: When frames have custom textures and are scaled to different sizes, the description text now repositions itself to stay under the frame
+2. **Default frames**: Frames without custom textures now properly position their description text 10 pixels below the frame
+3. **Manual positioning**: You can now manually drag description text in the editor and it will stay where you put it (see instructions below)
+
+### Key Changes:
+- Added `position_description_text_under_frame()` function that dynamically calculates the correct position based on frame size
+- Description text position is now updated whenever a frame is scaled by a custom texture
+- Added `use_custom_description_position` export variable to preserve manual positioning
+
+## How to Manually Position Description Text (Dragging)
+
+If you want to drag the description text to a custom position and have it stay there:
+
+1. **Open a room scene** (e.g., `room1.tscn`) in the Godot Editor
+2. **Select the PictureFrame** you want to customize (e.g., "PictureFrame1")
+3. **In the Inspector panel**, find the **"Script Variables"** section
+4. **Check the box** for **"Use Custom Description Position"**
+5. **Expand the PictureFrame node** in the scene tree (click the arrow next to it)
+6. **Select the "DescriptionText" child node**
+7. **Drag it** to your desired position in the editor, OR adjust the Layout properties in the Inspector:
+   - `offset_top`: Vertical position (distance from frame's top edge)
+   - `offset_left`: Left edge position
+   - `offset_right`: Right edge position
+   - Note: `offset_bottom` is typically auto-calculated
+8. **Save the scene** (Ctrl+S or Cmd+S)
+
+**Important:** The custom position will only persist if you have enabled "Use Custom Description Position" in step 4!
+
 ## How to Change Description Text Content
 
 ### Method 1: Edit in picture_frame.tscn (Default Text)
@@ -36,11 +69,22 @@ If you're instantiating frames via code or want to use the export variable:
 
 ## Changes Made
 
-### 1. Description Text Position (UNDER the Frame)
-The description text has been repositioned to appear directly **UNDER** the picture frame:
+### 1. Description Text Position (UNDER the Frame) - IMPROVED FIX
+
+The description text now **automatically positions itself under frames**, regardless of their size:
+
+**Latest Fix (2026-01-28):**
+- **Problem Solved**: Description text was appearing in the middle of scaled frames (frames with custom textures)
+- **Root Cause**: When frames were scaled by `scale_frame_to_texture()`, the description text position wasn't updated
+- **Solution**: 
+  - Added `position_description_text_under_frame()` function that dynamically calculates position based on actual frame size
+  - Description text now positions 10 pixels below the frame bottom, centered horizontally
+  - Position updates automatically for both default-sized frames (120x160) and scaled frames (up to 220x220)
+  
+**Previous Fix:**
 - **Previous position**: `offset_top = 520` (very far below)
-- **New position**: `offset_top = 170` (just below the 160px tall frame)
-- This places the text immediately under the frame for better visibility
+- **Old fix position**: `offset_top = 170` (just below the 160px tall default frame)
+- **Current behavior**: Dynamically calculated based on `size.y + 10` pixels
 
 ### 2. Slower Fade In Animation
 The fade in animation for description text is now **slower**:
