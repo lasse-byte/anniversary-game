@@ -1,4 +1,38 @@
-# Description Text Positioning Guide
+# Description Text Guide
+
+## How to Change Description Text Content
+
+### Method 1: Edit in picture_frame.tscn (Default Text)
+To change the default description text that appears for all frames:
+
+1. Open **picture_frame.tscn** in the Godot Editor
+2. In the Scene tree panel (left side), find and select the **"DescriptionText"** node
+3. In the Inspector panel (right side), find the **Text** property under the Label section
+4. Change the text to whatever you want (e.g., "A special memory", "Our first date", etc.)
+5. Save the scene (Ctrl+S or Cmd+S)
+
+### Method 2: Edit in Individual Room Scenes (Per-Frame Text)
+To set different text for each picture frame in a room:
+
+1. Open any room scene (e.g., **room1.tscn**, **room2.tscn**, etc.)
+2. In the Scene tree, expand a PictureFrame node (e.g., "PictureFrame1")
+3. Select the **"DescriptionText"** child node
+4. In the Inspector panel, change the **Text** property
+5. Repeat for other frames in the room
+6. Save the scene
+
+### Method 3: Using the Export Variable (Programmatic)
+If you're instantiating frames via code or want to use the export variable:
+
+1. Open the room scene
+2. Select a PictureFrame node
+3. In the Inspector, find the **Script Variables** section
+4. Set the **Description Text** property to your custom text
+5. Save the scene
+
+**Note:** Method 1 and 2 are recommended for most users. The text you set in the editor will now persist in-game!
+
+**Recent Fix (2026-01-28):** Previously, editing the DescriptionText in the scene editor would not persist in-game because the script was overwriting it. This has been fixed! Now your text changes in the editor will properly appear in-game.
 
 ## Changes Made
 
