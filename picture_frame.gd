@@ -1,5 +1,15 @@
 extends ColorRect
 
+# HOW TO ADJUST DESCRIPTION TEXT POSITION:
+# 1. Open picture_frame.tscn in Godot
+# 2. Select the "DescriptionText" node in the scene tree
+# 3. In the Inspector panel, modify these Layout properties:
+#    - offset_top: Controls vertical position (higher = further down)
+#    - offset_left: Controls left edge position
+#    - offset_right: Controls right edge position
+# 4. Current values: offset_top=170, offset_left=-100, offset_right=220
+#    Example: Change offset_top to 190 to move text further down
+
 @export var description_text: String = "A beautiful memory from our journey together"
 
 @onready var picture = $Picture
@@ -99,11 +109,11 @@ func fade_in_description_text():
 	if fade_tween:
 		fade_tween.kill()
 	
-	# Create new tween for fade in
+	# Create new tween for fade in (1.5 seconds for slower fade)
 	fade_tween = create_tween()
 	fade_tween.set_ease(Tween.EASE_OUT)
 	fade_tween.set_trans(Tween.TRANS_CUBIC)
-	fade_tween.tween_property(description_label, "modulate:a", 1.0, 0.5)
+	fade_tween.tween_property(description_label, "modulate:a", 1.0, 1.5)
 
 func fade_out_description_text():
 	if not description_label:
@@ -113,9 +123,9 @@ func fade_out_description_text():
 	if fade_tween:
 		fade_tween.kill()
 	
-	# Create new tween for fade out
+	# Create new tween for fade out (1.5 seconds for slower fade)
 	fade_tween = create_tween()
 	fade_tween.set_ease(Tween.EASE_IN)
 	fade_tween.set_trans(Tween.TRANS_CUBIC)
-	fade_tween.tween_property(description_label, "modulate:a", 0.0, 0.3)
+	fade_tween.tween_property(description_label, "modulate:a", 0.0, 1.5)
 
