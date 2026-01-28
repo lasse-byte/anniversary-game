@@ -1,0 +1,169 @@
+# Room 6 Scene Tree Structure
+
+Room6 (Node2D) [room_final.gd]
+├── ColorRect (Background)
+│   └── Size: 2200×800, Color: Soft Pink
+│
+├── Label (Title)
+│   └── Text: "The Final Chapter ❤️"
+│   └── Position: (400, 50), Size: 1400×100
+│   └── Font: 56px, Centered
+│
+├── Floor (StaticBody2D)
+│   ├── CollisionShape2D
+│   │   └── Position: (1100, 750)
+│   │   └── Shape: 2200×100 rectangle
+│   └── ColorRect (Visual)
+│       └── Position: (0, 700), Size: 2200×100
+│       └── Color: Brown
+│
+├── Player (CharacterBody2D) [Instance from player.tscn]
+│   └── Initial Position: (100, 650)
+│   └── Spawns at left side of room
+│
+├── CenterArea (Area2D) [Confetti Trigger]
+│   ├── Position: (1100, 650) - Room center
+│   ├── CollisionShape2D
+│   │   └── Shape: 400×100 rectangle
+│   └── Signal: body_entered → _on_center_area_body_entered()
+│
+├── DraggableTextBox (TextEdit) [draggable_textbox.gd]
+│   ├── Position: (600, 250)
+│   ├── Size: 1000×300
+│   ├── Font Size: 32px
+│   ├── Background: Cream (90% opacity)
+│   ├── Text Color: Dark Brown
+│   ├── Word Wrap: Enabled
+│   └── Features:
+│       ├── Click to edit text
+│       └── Click and drag to reposition
+│
+├── ConfettiLeft (GPUParticles2D)
+│   ├── Position: (100, 400) - Left side
+│   ├── Amount: 150 particles
+│   ├── Direction: Right and down (→ ↘)
+│   ├── Lifetime: 3 seconds
+│   ├── One-Shot: True
+│   └── Material: ParticleProcessMaterial
+│       ├── Emission: 50×200 box
+│       ├── Direction: (1, -0.5, 0)
+│       ├── Velocity: 200-350
+│       ├── Gravity: (0, 300, 0)
+│       ├── Rotation: ±360°/sec
+│       ├── Scale: 3-8 pixels
+│       └── Colors: Pink → Yellow → Blue
+│
+├── ConfettiRight (GPUParticles2D)
+│   ├── Position: (2100, 400) - Right side
+│   ├── Amount: 150 particles
+│   ├── Direction: Left and down (← ↙)
+│   ├── Lifetime: 3 seconds
+│   ├── One-Shot: True
+│   └── Material: ParticleProcessMaterial
+│       ├── Emission: 50×200 box
+│       ├── Direction: (-1, -0.5, 0)
+│       ├── Velocity: 200-350
+│       ├── Gravity: (0, 300, 0)
+│       ├── Rotation: ±360°/sec
+│       ├── Scale: 3-8 pixels
+│       └── Colors: Pink → Yellow → Blue
+│
+└── UI (CanvasLayer)
+    └── YearLabel (Label)
+        ├── Position: (20, 20)
+        ├── Size: 380×30
+        ├── Font: 24px
+        └── Text: "Forever & Always 💕"
+
+═══════════════════════════════════════════════════════════════
+
+Script Connections:
+
+1. room_final.gd (Main Room Script)
+   ├── @onready var confetti_left = $ConfettiLeft
+   ├── @onready var confetti_right = $ConfettiRight
+   ├── @onready var text_box = $DraggableTextBox
+   └── func _on_center_area_body_entered(body):
+       └── Triggers both confetti emitters
+
+2. draggable_textbox.gd (Text Box Script)
+   ├── var dragging = false
+   ├── var drag_offset = Vector2.ZERO
+   ├── func _ready():
+   │   └── Sets default text and styling
+   └── func _input(event):
+       ├── Detects mouse clicks on text box
+       └── Updates position while dragging
+
+═══════════════════════════════════════════════════════════════
+
+Signal Flow:
+
+Player Movement:
+    │
+    ▼
+Player enters CenterArea
+    │
+    ▼
+CenterArea emits body_entered signal
+    │
+    ▼
+room_final.gd receives signal
+    │
+    ▼
+Checks: body.name == "Player" && !confetti_played
+    │
+    ▼
+confetti_left.emitting = true
+confetti_right.emitting = true
+confetti_played = true
+    │
+    ▼
+🎉 CELEBRATION! 🎉
+
+Mouse Interaction:
+    │
+    ▼
+User clicks on text box
+    │
+    ▼
+draggable_textbox.gd detects click
+    │
+    ▼
+Checks if mouse is over text box
+    │
+    ▼
+Sets dragging = true
+Stores drag_offset
+    │
+    ▼
+User moves mouse while holding click
+    │
+    ▼
+Text box position = mouse_pos + drag_offset
+    │
+    ▼
+User releases mouse
+    │
+    ▼
+Sets dragging = false
+
+═══════════════════════════════════════════════════════════════
+
+Node Hierarchy Summary:
+
+Total Nodes: 15
+├── Core Nodes: 1 (Room6)
+├── Visual Nodes: 3 (ColorRect, Label, Floor.ColorRect)
+├── Physics Nodes: 3 (Floor, CenterArea, Player)
+├── UI Nodes: 3 (DraggableTextBox, UI, YearLabel)
+└── Effects Nodes: 2 (ConfettiLeft, ConfettiRight)
+
+Total Scripts: 2
+├── room_final.gd (Room logic)
+└── draggable_textbox.gd (Text box behavior)
+
+Total Connections: 1
+└── CenterArea.body_entered → Room6._on_center_area_body_entered
+
+═══════════════════════════════════════════════════════════════
