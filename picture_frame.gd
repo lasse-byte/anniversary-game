@@ -10,7 +10,9 @@ extends ColorRect
 # 4. Current values: offset_top=170, offset_left=-100, offset_right=220
 #    Example: Change offset_top to 190 to move text further down
 
-@export var description_text: String = "A beautiful memory from our journey together"
+const DEFAULT_DESCRIPTION_TEXT = "A beautiful memory from our journey together"
+
+@export var description_text: String = DEFAULT_DESCRIPTION_TEXT
 
 @onready var picture = $Picture
 @onready var label = $Picture/Label
@@ -25,8 +27,7 @@ func _ready():
 	# 2) Setting text via the export variable when instantiating programmatically
 	if description_label:
 		# Only override if export variable was changed from default
-		var default_text = "A beautiful memory from our journey together"
-		if description_text != default_text:
+		if description_text != DEFAULT_DESCRIPTION_TEXT:
 			description_label.text = description_text
 	# Check if Picture node has a Sprite2D child for custom texture
 	var sprite = picture.get_node_or_null("Sprite2D")
