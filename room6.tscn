@@ -10,6 +10,9 @@ size = Vector2(2200, 100)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_center"]
 size = Vector2(400, 100)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_textbox"]
+size = Vector2(1100, 400)
+
 [sub_resource type="Gradient" id="Gradient_confetti"]
 offsets = PackedFloat32Array(0, 0.5, 1)
 colors = PackedColorArray(1, 0.2, 0.5, 1, 1, 0.8, 0.2, 1, 0.2, 0.5, 1, 0)
@@ -118,6 +121,15 @@ Drag me around to position me wherever you want!"
 wrap_mode = 1
 script = ExtResource("3_textbox")
 
+[node name="DetectionArea" type="Area2D" parent="DraggableTextBox"]
+position = Vector2(500, 400)
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DraggableTextBox/DetectionArea"]
+shape = SubResource("RectangleShape2D_textbox")
+
 [node name="ConfettiLeft" type="GPUParticles2D" parent="."]
 position = Vector2(100, 400)
 emitting = false
@@ -147,3 +159,5 @@ theme_override_font_sizes/font_size = 24
 text = "Forever & Always 💕"
 
 [connection signal="body_entered" from="CenterArea" to="." method="_on_center_area_body_entered"]
+[connection signal="body_entered" from="DraggableTextBox/DetectionArea" to="DraggableTextBox" method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DraggableTextBox/DetectionArea" to="DraggableTextBox" method="_on_detection_area_body_exited"]

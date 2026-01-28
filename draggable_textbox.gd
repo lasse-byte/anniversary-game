@@ -1,6 +1,7 @@
 extends TextEdit
 
 # Draggable text box that can be moved around with the mouse
+# Also acts like a picture frame for camera focus
 
 var dragging = false
 var drag_offset = Vector2.ZERO
@@ -28,3 +29,15 @@ func _input(event):
 	elif event is InputEventMouseMotion and dragging:
 		# Move the text box
 		global_position = get_global_mouse_position() + drag_offset
+
+# Called by DetectionArea when player enters
+func _on_detection_area_body_entered(body):
+	if body.name == "Player":
+		if body.has_method("add_nearby_frame"):
+			body.add_nearby_frame(self)
+
+# Called by DetectionArea when player exits
+func _on_detection_area_body_exited(body):
+	if body.name == "Player":
+		if body.has_method("remove_nearby_frame"):
+			body.remove_nearby_frame(self)
