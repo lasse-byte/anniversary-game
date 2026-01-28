@@ -1,18 +1,27 @@
 extends ColorRect
 
 # HOW TO ADJUST DESCRIPTION TEXT POSITION:
-# 1. Open picture_frame.tscn in Godot
-# 2. Select the "DescriptionText" node in the scene tree
-# 3. In the Inspector panel, modify these Layout properties:
+# By default, description text is automatically positioned UNDER the frame.
+# 
+# To manually position the description text:
+# 1. Open a room scene (e.g., room1.tscn) in Godot
+# 2. Select a PictureFrame node (e.g., "PictureFrame1") in the scene tree
+# 3. In the Inspector panel, find "Script Variables" section
+# 4. Check "Use Custom Description Position" to enable manual positioning
+# 5. Expand the PictureFrame node and select the "DescriptionText" child node
+# 6. In the Inspector panel, adjust the Layout properties:
 #    - offset_top: Controls vertical position (higher = further down)
 #    - offset_left: Controls left edge position
 #    - offset_right: Controls right edge position
-# 4. Current values: offset_top=170, offset_left=-100, offset_right=220
-#    Example: Change offset_top to 190 to move text further down
+# 7. Save the scene (Ctrl+S or Cmd+S)
+# 
+# Note: The custom position will be preserved when you drag the text in the editor,
+# as long as "Use Custom Description Position" is checked.
 
 const DEFAULT_DESCRIPTION_TEXT = "A beautiful memory from our journey together"
 
 @export var description_text: String = DEFAULT_DESCRIPTION_TEXT
+@export var use_custom_description_position: bool = false  # Set to true to preserve manual positioning
 
 @onready var picture = $Picture
 @onready var label = $Picture/Label
@@ -29,10 +38,17 @@ func _ready():
 		# Only override if export variable was changed from default
 		if description_text != DEFAULT_DESCRIPTION_TEXT:
 			description_label.text = description_text
+	
 	# Check if Picture node has a Sprite2D child for custom texture
 	var sprite = picture.get_node_or_null("Sprite2D")
 	if sprite and sprite.texture:
+		# For scaled frames, always reposition text to stay under the frame
+		# unless user explicitly wants to preserve custom position
 		scale_frame_to_texture(sprite.texture)
+	else:
+		# For default-sized frames, auto-position if not using custom position
+		if not use_custom_description_position:
+			position_description_text_under_frame()
 
 func scale_frame_to_texture(texture: Texture2D):
 	if not texture:
@@ -90,6 +106,25 @@ func scale_frame_to_texture(texture: Texture2D):
 	if detection_area:
 		detection_area.position.x = size.x / 2
 		detection_area.position.y = 488 + 20  # Position on floor level
+	
+	# Update description text position to be UNDER the frame
+	# unless user has set a custom position
+	if not use_custom_description_position:
+		position_description_text_under_frame()
+
+func position_description_text_under_frame():
+	"""Position the description text directly under the frame, regardless of frame size."""
+	if not description_label:
+		return
+	
+	var text_margin = 10.0  # Space between frame bottom and text
+	var text_height = 40.0  # Height of the text area
+	var text_width = 320.0  # Width of the text area
+	
+	description_label.offset_top = size.y + text_margin
+	description_label.offset_bottom = size.y + text_margin + text_height
+	description_label.offset_left = (size.x - text_width) / 2
+	description_label.offset_right = (size.x + text_width) / 2
 
 func _on_detection_area_body_entered(body):
 	if body.name == "Player":
